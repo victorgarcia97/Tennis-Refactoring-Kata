@@ -20,15 +20,9 @@ namespace Tennis
         public string GetScore()
         {
             var score = "";
-            if (p1point == p2point && p1point < 3)
+            if (IsADraw())
             {
-                if (p1point == 0)
-                    score = "Love";
-                if (p1point == 1)
-                    score = "Fifteen";
-                if (p1point == 2)
-                    score = "Thirty";
-                score += "-All";
+                score = SetDrawScore(score);
             }
             if (p1point == p2point && p1point > 2)
                 score = "Deuce";
@@ -102,6 +96,23 @@ namespace Tennis
                 score = "Win for player2";
             }
             return score;
+        }
+
+        private string SetDrawScore(string score)
+        {
+            if (p1point == 0)
+                score = "Love";
+            if (p1point == 1)
+                score = "Fifteen";
+            if (p1point == 2)
+                score = "Thirty";
+            score += "-All";
+            return score;
+        }
+
+        private bool IsADraw()
+        {
+            return p1point == p2point && p1point < 3;
         }
 
         public void SetP1Score(int number)
