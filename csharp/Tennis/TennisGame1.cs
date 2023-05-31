@@ -23,20 +23,11 @@ namespace Tennis
 
         public string GetScore()
         {
-            string score = "";
             if (IsDraw())
             {
-                score = GetDrawScore();
+                return GetDrawScore();
             }
-            else if (IsAnyPlayerInAdvantageOrWinningSituation())
-            {
-                score = GetAdvantageOrWinningScore();
-            }
-            else
-            {
-                score = GetNormalScore(score);
-            }
-            return score;
+            return IsAnyPlayerInAdvantageOrWinningSituation() ? GetAdvantageOrWinningScore() : GetNormalScore("");
         }
 
         private string GetNormalScore(string score)
