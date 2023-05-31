@@ -27,29 +27,13 @@ namespace Tennis
             if (IsDeuce())
                 score = "Deuce";
 
-            if (p1point > 0 && p2point == 0)
+            if (IsPlayerOneAhead())
             {
-                if (p1point == 1)
-                    p1res = "Fifteen";
-                if (p1point == 2)
-                    p1res = "Thirty";
-                if (p1point == 3)
-                    p1res = "Forty";
-
-                p2res = "Love";
-                score = p1res + "-" + p2res;
+                score = SetPlayerOneAheadScore();
             }
-            if (p2point > 0 && p1point == 0)
+            if (IsPlayerTwoAhead())
             {
-                if (p2point == 1)
-                    p2res = "Fifteen";
-                if (p2point == 2)
-                    p2res = "Thirty";
-                if (p2point == 3)
-                    p2res = "Forty";
-
-                p1res = "Love";
-                score = p1res + "-" + p2res;
+                score = SetPlayerTwoAheadScore();
             }
 
             if (p1point > p2point && p1point < 4)
@@ -96,6 +80,46 @@ namespace Tennis
                 score = "Win for player2";
             }
             return score;
+        }
+
+        private string SetPlayerTwoAheadScore()
+        {
+            string score;
+            if (p2point == 1)
+                p2res = "Fifteen";
+            if (p2point == 2)
+                p2res = "Thirty";
+            if (p2point == 3)
+                p2res = "Forty";
+
+            p1res = "Love";
+            score = p1res + "-" + p2res;
+            return score;
+        }
+
+        private string SetPlayerOneAheadScore()
+        {
+            string score;
+            if (p1point == 1)
+                p1res = "Fifteen";
+            if (p1point == 2)
+                p1res = "Thirty";
+            if (p1point == 3)
+                p1res = "Forty";
+
+            p2res = "Love";
+            score = p1res + "-" + p2res;
+            return score;
+        }
+
+        private bool IsPlayerTwoAhead()
+        {
+            return p2point > 0 && p1point == 0;
+        }
+
+        private bool IsPlayerOneAhead()
+        {
+            return p1point > 0 && p2point == 0;
         }
 
         private bool IsDeuce()
