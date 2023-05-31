@@ -24,7 +24,7 @@ namespace Tennis
             {
                 score = SetDrawScore(score);
             }
-            if (p1point == p2point && p1point > 2)
+            if (IsDeuce())
                 score = "Deuce";
 
             if (p1point > 0 && p2point == 0)
@@ -96,6 +96,11 @@ namespace Tennis
                 score = "Win for player2";
             }
             return score;
+        }
+
+        private bool IsDeuce()
+        {
+            return p1point == p2point && p1point > 2;
         }
 
         private string SetDrawScore(string score)
