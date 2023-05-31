@@ -24,42 +24,54 @@ namespace Tennis
         public string GetScore()
         {
             string score = "";
-            var tempScore = 0;
             if (IsDraw())
             {
                 score = GetDrawScore();
             }
-            else if (IsAnyPlayerInAdvatangeOrWinningSituation())
+            else if (IsAnyPlayerInAdvantageOrWinningSituation())
             {
                 score = GetAdvantageOrWinningScore();
             }
             else
             {
-                for (var i = 1; i < 3; i++)
-                {
-                    if (i == 1) tempScore = m_score1;
-                    else { score += "-"; tempScore = m_score2; }
-                    switch (tempScore)
-                    {
-                        case 0:
-                            score += "Love";
-                            break;
-                        case 1:
-                            score += "Fifteen";
-                            break;
-                        case 2:
-                            score += "Thirty";
-                            break;
-                        case 3:
-                            score += "Forty";
-                            break;
-                    }
-                }
+                score = GetNormalScore(score);
             }
             return score;
         }
 
-        private bool IsAnyPlayerInAdvatangeOrWinningSituation()
+        private string GetNormalScore(string score)
+        {
+            for (var i = 1; i < 3; i++)
+            {
+                int tempScore;
+                if (i == 1) tempScore = m_score1;
+                else
+                {
+                    score += "-";
+                    tempScore = m_score2;
+                }
+
+                switch (tempScore)
+                {
+                    case 0:
+                        score += "Love";
+                        break;
+                    case 1:
+                        score += "Fifteen";
+                        break;
+                    case 2:
+                        score += "Thirty";
+                        break;
+                    case 3:
+                        score += "Forty";
+                        break;
+                }
+            }
+
+            return score;
+        }
+
+        private bool IsAnyPlayerInAdvantageOrWinningSituation()
         {
             return m_score1 >= 4 || m_score2 >= 4;
         }
