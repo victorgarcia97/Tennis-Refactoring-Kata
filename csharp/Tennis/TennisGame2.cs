@@ -61,25 +61,45 @@ namespace Tennis
                 score = p1res + "-" + p2res;
             }
 
-            if (p1point > p2point && p2point >= 3)
+            if (IsPlayerOneInAdvantage())
             {
                 score = "Advantage player1";
             }
 
-            if (p2point > p1point && p1point >= 3)
+            if (IsPlayerTwoInAdvantage())
             {
                 score = "Advantage player2";
             }
 
-            if (p1point >= 4 && p2point >= 0 && (p1point - p2point) >= 2)
+            if (PlayerOneHasWon())
             {
                 score = "Win for player1";
             }
-            if (p2point >= 4 && p1point >= 0 && (p2point - p1point) >= 2)
+            if (PlayerTwoHasWon())
             {
                 score = "Win for player2";
             }
             return score;
+        }
+
+        private bool PlayerTwoHasWon()
+        {
+            return p2point >= 4 && p1point >= 0 && (p2point - p1point) >= 2;
+        }
+
+        private bool PlayerOneHasWon()
+        {
+            return p1point >= 4 && p2point >= 0 && (p1point - p2point) >= 2;
+        }
+
+        private bool IsPlayerTwoInAdvantage()
+        {
+            return p2point > p1point && p1point >= 3;
+        }
+
+        private bool IsPlayerOneInAdvantage()
+        {
+            return p1point > p2point && p2point >= 3;
         }
 
         private string SetPlayerTwoAheadScore()
