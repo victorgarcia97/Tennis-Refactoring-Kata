@@ -45,14 +45,18 @@ namespace Tennis
         private string SetNormalScoreWhenPlayerTwoOverPlayerOne()
         {
             string score;
-            if (p2point == 2)
-                p2res = "Thirty";
-            if (p2point == 3)
-                p2res = "Forty";
-            if (p1point == 1)
-                p1res = "Fifteen";
-            if (p1point == 2)
-                p1res = "Thirty";
+            p2res = p2point switch
+            {
+                2 => "Thirty",
+                3 => "Forty",
+                _ => p2res
+            };
+            p1res = p1point switch
+            {
+                1 => "Fifteen",
+                2 => "Thirty",
+                _ => p1res
+            };
             score = p1res + "-" + p2res;
             return score;
         }
@@ -65,14 +69,18 @@ namespace Tennis
         private string SetNormalScoreWhenPlayerOneOverPlayerTwo()
         {
             string score;
-            if (p1point == 2)
-                p1res = "Thirty";
-            if (p1point == 3)
-                p1res = "Forty";
-            if (p2point == 1)
-                p2res = "Fifteen";
-            if (p2point == 2)
-                p2res = "Thirty";
+            p1res = p1point switch
+            {
+                2 => "Thirty",
+                3 => "Forty",
+                _ => p1res
+            };
+            p2res = p2point switch
+            {
+                1 => "Fifteen",
+                2 => "Thirty",
+                _ => p2res
+            };
             score = p1res + "-" + p2res;
             return score;
         }
@@ -105,12 +113,13 @@ namespace Tennis
         private string SetPlayerTwoAheadScore()
         {
             string score;
-            if (p2point == 1)
-                p2res = "Fifteen";
-            if (p2point == 2)
-                p2res = "Thirty";
-            if (p2point == 3)
-                p2res = "Forty";
+            p2res = p2point switch
+            {
+                1 => "Fifteen",
+                2 => "Thirty",
+                3 => "Forty",
+                _ => p2res
+            };
 
             p1res = "Love";
             score = p1res + "-" + p2res;
@@ -120,12 +129,13 @@ namespace Tennis
         private string SetPlayerOneAheadScore()
         {
             string score;
-            if (p1point == 1)
-                p1res = "Fifteen";
-            if (p1point == 2)
-                p1res = "Thirty";
-            if (p1point == 3)
-                p1res = "Forty";
+            p1res = p1point switch
+            {
+                1 => "Fifteen",
+                2 => "Thirty",
+                3 => "Forty",
+                _ => p1res
+            };
 
             p2res = "Love";
             score = p1res + "-" + p2res;
@@ -149,12 +159,13 @@ namespace Tennis
 
         private string SetDrawScore(string score)
         {
-            if (p1point == 0)
-                score = "Love";
-            if (p1point == 1)
-                score = "Fifteen";
-            if (p1point == 2)
-                score = "Thirty";
+            score = p1point switch
+            {
+                0 => "Love",
+                1 => "Fifteen",
+                2 => "Thirty",
+                _ => score
+            };
             score += "-All";
             return score;
         }
