@@ -16,12 +16,7 @@ namespace Tennis
 
         public string GetScore()
         {
-            if (IsNotYetEndgame())
-            {
-                return GetNormalScore();
-            }
-
-            return GetEndGameSituationScore();
+            return IsNotYetEndgame() ? GetNormalScore() : GetEndGameSituationScore();
         }
 
         private string GetEndGameSituationScore()
