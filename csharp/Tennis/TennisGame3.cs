@@ -19,14 +19,14 @@ namespace Tennis
             if (IsNotYetEndgame())
             {
                 var score = POINTS_NAMES[player1Points];
-                if (player1Points == player2Points)
+                if (ArePlayersEqualOnPoints())
                     return score + "-All";
                 else
                     return score + "-" + POINTS_NAMES[player2Points];
             }
             else
             {
-                if (player1Points == player2Points)
+                if (ArePlayersEqualOnPoints())
                     return "Deuce";
                 var leader = player1Points > player2Points ? player1Name : player2Name;
                 var pointsDifferenceIsOne = (player1Points - player2Points) * (player1Points - player2Points) == 1;
@@ -35,6 +35,11 @@ namespace Tennis
                 else
                     return "Win for " + leader;
             }
+        }
+
+        private bool ArePlayersEqualOnPoints()
+        {
+            return player1Points == player2Points;
         }
 
         private bool IsNotYetEndgame()
