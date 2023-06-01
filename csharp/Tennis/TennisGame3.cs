@@ -18,18 +18,29 @@ namespace Tennis
         {
             if (IsNotYetEndgame())
             {
-                var score = POINTS_NAMES[player1Points];
-                if (ArePlayersEqualOnPoints())
-                    return score + "-All";
-                return score + "-" + POINTS_NAMES[player2Points];
+                return GetNormalScore();
             }
 
+            return GetEndGameSituationScore();
+        }
+
+        private string GetEndGameSituationScore()
+        {
             if (ArePlayersEqualOnPoints())
                 return "Deuce";
             var leader = GetPlayerAhead();
             if (IsPointsDifferenceOne())
                 return "Advantage " + leader;
+
             return "Win for " + leader;
+        }
+
+        private string GetNormalScore()
+        {
+            var score = POINTS_NAMES[player1Points];
+            if (ArePlayersEqualOnPoints())
+                return score + "-All";
+            return score + "-" + POINTS_NAMES[player2Points];
         }
 
         private bool IsPointsDifferenceOne()
