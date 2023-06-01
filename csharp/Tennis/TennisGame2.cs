@@ -19,51 +19,27 @@ namespace Tennis
 
         public string GetScore()
         {
-            var score = "";
-            if (IsADraw())
-            {
-                score = SetDrawScore(score);
-            }
-            if (IsDeuce())
-                score = "Deuce";
+            if (IsADraw()) return SetDrawScore("");
 
-            if (IsPlayerOneAhead())
-            {
-                score = SetPlayerOneAheadScore();
-            }
-            if (IsPlayerTwoAhead())
-            {
-                score = SetPlayerTwoAheadScore();
-            }
+            if (IsDeuce()) return "Deuce";
 
-            if (IsPlayerOneScoreOverPlayerTwo())
-            {
-                score = SetNormalScoreWhenPlayerOneOverPlayerTwo();
-            }
-            if (IsPlayerTwoScoreOverPlayerOne())
-            {
-                score = SetNormalScoreWhenPlayerTwoOverPlayerOne();
-            }
+            if (IsPlayerOneAhead()) return SetPlayerOneAheadScore();
 
-            if (IsPlayerOneInAdvantage())
-            {
-                score = "Advantage player1";
-            }
+            if (IsPlayerTwoAhead()) return SetPlayerTwoAheadScore();
 
-            if (IsPlayerTwoInAdvantage())
-            {
-                score = "Advantage player2";
-            }
+            if (IsPlayerOneScoreOverPlayerTwo()) return SetNormalScoreWhenPlayerOneOverPlayerTwo();
+            
+            if (IsPlayerTwoScoreOverPlayerOne()) return SetNormalScoreWhenPlayerTwoOverPlayerOne();
 
-            if (PlayerOneHasWon())
-            {
-                score = "Win for player1";
-            }
-            if (PlayerTwoHasWon())
-            {
-                score = "Win for player2";
-            }
-            return score;
+            if (IsPlayerOneInAdvantage()) return "Advantage player1";
+
+            if (IsPlayerTwoInAdvantage()) return "Advantage player2";
+
+            if (PlayerOneHasWon()) return "Win for player1";
+            
+            if (PlayerTwoHasWon()) return "Win for player2";
+            
+            return "";
         }
 
         private string SetNormalScoreWhenPlayerTwoOverPlayerOne()
