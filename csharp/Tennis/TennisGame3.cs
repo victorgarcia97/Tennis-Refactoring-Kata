@@ -28,13 +28,18 @@ namespace Tennis
             {
                 if (ArePlayersEqualOnPoints())
                     return "Deuce";
-                var leader = player1Points > player2Points ? player1Name : player2Name;
+                var leader = GetPlayerAhead();
                 var pointsDifferenceIsOne = (player1Points - player2Points) * (player1Points - player2Points) == 1;
                 if (pointsDifferenceIsOne)
                     return "Advantage " + leader;
                 else
                     return "Win for " + leader;
             }
+        }
+
+        private string GetPlayerAhead()
+        {
+            return player1Points > player2Points ? player1Name : player2Name;
         }
 
         private bool ArePlayersEqualOnPoints()
