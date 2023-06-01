@@ -19,32 +19,63 @@ namespace Tennis
 
         public string GetScore()
         {
-            if (IsADraw()) return SetDrawScore("");
+            var score = "";
 
-            if (IsDeuce()) return "Deuce";
+            if (IsADraw())
+            {
+                score = SetDrawScore(score);
+            }
 
-            if (IsPlayerOneAhead()) return SetPlayerOneAheadScore();
+            if (IsDeuce())
+            {
+                score = "Deuce";
+            }
 
-            if (IsPlayerTwoAhead()) return SetPlayerTwoAheadScore();
+            if (IsPlayerOneAhead())
+            {
+                score = SetPlayerOneAheadScore();
+            }
 
-            if (IsPlayerOneScoreOverPlayerTwo()) return SetNormalScoreWhenPlayerOneOverPlayerTwo();
+            if (IsPlayerTwoAhead())
+            {
+                score = SetPlayerTwoAheadScore();
+            }
+
+            if (IsPlayerOneScoreOverPlayerTwo())
+            {
+                score = SetNormalScoreWhenPlayerOneOverPlayerTwo();
+            }
+
+            if (IsPlayerTwoScoreOverPlayerOne())
+            {
+                score = SetNormalScoreWhenPlayerTwoOverPlayerOne();
+            }
+
+            if (IsPlayerOneInAdvantage())
+            {
+                score = "Advantage player1";
+            }
+
+            if (IsPlayerTwoInAdvantage())
+            {
+                score = "Advantage player2";
+            }
+
+            if (PlayerOneHasWon())
+            {
+                score = "Win for player1";
+            }
+
+            if (PlayerTwoHasWon())
+            {
+                score = "Win for player2";
+            }
             
-            if (IsPlayerTwoScoreOverPlayerOne()) return SetNormalScoreWhenPlayerTwoOverPlayerOne();
-
-            if (IsPlayerOneInAdvantage()) return "Advantage player1";
-
-            if (IsPlayerTwoInAdvantage()) return "Advantage player2";
-
-            if (PlayerOneHasWon()) return "Win for player1";
-            
-            if (PlayerTwoHasWon()) return "Win for player2";
-            
-            return "";
+            return score;
         }
 
         private string SetNormalScoreWhenPlayerTwoOverPlayerOne()
         {
-            string score;
             p2res = p2point switch
             {
                 2 => "Thirty",
@@ -57,7 +88,7 @@ namespace Tennis
                 2 => "Thirty",
                 _ => p1res
             };
-            score = p1res + "-" + p2res;
+            var score = p1res + "-" + p2res;
             return score;
         }
 
@@ -68,7 +99,6 @@ namespace Tennis
 
         private string SetNormalScoreWhenPlayerOneOverPlayerTwo()
         {
-            string score;
             p1res = p1point switch
             {
                 2 => "Thirty",
@@ -81,7 +111,7 @@ namespace Tennis
                 2 => "Thirty",
                 _ => p2res
             };
-            score = p1res + "-" + p2res;
+            var score = p1res + "-" + p2res;
             return score;
         }
 
@@ -112,7 +142,6 @@ namespace Tennis
 
         private string SetPlayerTwoAheadScore()
         {
-            string score;
             p2res = p2point switch
             {
                 1 => "Fifteen",
@@ -122,13 +151,12 @@ namespace Tennis
             };
 
             p1res = "Love";
-            score = p1res + "-" + p2res;
+            var score = p1res + "-" + p2res;
             return score;
         }
 
         private string SetPlayerOneAheadScore()
         {
-            string score;
             p1res = p1point switch
             {
                 1 => "Fifteen",
@@ -138,7 +166,7 @@ namespace Tennis
             };
 
             p2res = "Love";
-            score = p1res + "-" + p2res;
+            var score = p1res + "-" + p2res;
             return score;
         }
 
