@@ -21,19 +21,15 @@ namespace Tennis
                 var score = POINTS_NAMES[player1Points];
                 if (ArePlayersEqualOnPoints())
                     return score + "-All";
-                else
-                    return score + "-" + POINTS_NAMES[player2Points];
+                return score + "-" + POINTS_NAMES[player2Points];
             }
-            else
-            {
-                if (ArePlayersEqualOnPoints())
-                    return "Deuce";
-                var leader = GetPlayerAhead();
-                if (IsPointsDifferenceOne())
-                    return "Advantage " + leader;
-                else
-                    return "Win for " + leader;
-            }
+
+            if (ArePlayersEqualOnPoints())
+                return "Deuce";
+            var leader = GetPlayerAhead();
+            if (IsPointsDifferenceOne())
+                return "Advantage " + leader;
+            return "Win for " + leader;
         }
 
         private bool IsPointsDifferenceOne()
